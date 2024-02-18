@@ -1,3 +1,4 @@
+const btnGo = document.getElementsByTagName('button')
 
 
 function computer() {
@@ -60,13 +61,5 @@ function compare() {
 
 
 }
-let playerScore = 0, computerScore = 0
-for (let index = 0; index < 5; index++) {
-    let test = compare()
-    if(test){
-        playerScore++
-    }else if(test === false){
-        computerScore++
-    }
-}
+
 console.log(`Player Score:${playerScore} |  Computer Score: ${computerScore}`)
