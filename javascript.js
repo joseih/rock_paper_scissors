@@ -1,4 +1,19 @@
-const btnGo = document.getElementsByTagName('button')
+const btnGo = document.querySelector('button')
+btnGo.addEventListener('click',compare)
+const computerPlacar = document.querySelector('#computerPlacar')
+const playerPlacar = document.querySelector('#playerPlacar')
+let computerScore = 0
+let playerScore = 0
+
+
+playerPlacar.textContent = playerScore
+computerPlacar.textContent = computerScore
+
+function attPlacar(span){
+    let int = parseInt(span.textContent)
+    int += 1
+    span.textContent = int
+}
 
 
 function computer() {
@@ -15,14 +30,12 @@ function computer() {
     
 }
 function player() {
-    let choice = prompt("Player turn")
-    switch (choice) {
-        case "scissor":
-            return "scissor";
-        case "rock":
-            return "rock";
-        case "paper":
-            return "paper"  ;  
+    const playerChoice = document.getElementsByName("playerChoice")
+    for(let choice of playerChoice){
+        if(choice.checked){
+            console.log(choice.id)
+            return choice.id
+        }
     }
 }
 function compare() {    
@@ -34,32 +47,30 @@ function compare() {
         return null
     }
     if(playerChoice == "scissor" && computerChoice == "rock"){
-        console.log("Loss! "+playerChoice+" losses to "+ computerChoice);
+        attPlacar(computerPlacar)
         return false
     }
     if(playerChoice == "scissor" && computerChoice == "paper"){
-        console.log("Win");
+        attPlacar(playerPlacar)
         return true
     }
 
     if(playerChoice == "rock" && computerChoice == "paper"){
-        console.log("Loss! "+playerChoice+" losses to "+ computerChoice);
+        attPlacar(computerPlacar)
     }
     if(playerChoice == "rock" && computerChoice == "scissor"){
-        console.log("Win "+ playerChoice+" win agaist "+computerChoice );
-        return true
+        attPlacar(playerPlacar)
 
     }
     if(playerChoice == "paper" && computerChoice == "scissor"){
-        console.log("Loss! "+playerChoice+" losses to "+ computerChoice);
+        attPlacar(computerPlacar);
         
     }
     if(playerChoice == "paper" && computerChoice == "rock"){
-        console.log("Win "+ playerChoice+" win agaist "+computerChoice );
+        attPlacar(playerPlacar)
         return true
     }
 
 
 }
 
-console.log(`Player Score:${playerScore} |  Computer Score: ${computerScore}`)
